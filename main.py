@@ -4,7 +4,7 @@ from pygame.locals import *
 
 
 
-def gameLoop(screen):
+def gameLoop(screen, clock, dt):
     while True:
         # Exit the loop if user has closed window
         for event in pygame.event.get():
@@ -12,6 +12,7 @@ def gameLoop(screen):
                 return
 
         screen.fill('black')
+        dt = clock.tick(60) / 1000
         #Finally
         pygame.display.flip()
 
@@ -23,7 +24,11 @@ def main():
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
-    gameLoop(screen)
+    clock = pygame.time.Clock()
+    # Delta time - amount of time that has changed
+    dt = 0
+
+    gameLoop(screen, clock, dt)
 
 if __name__ == "__main__":
     main()
