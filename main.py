@@ -1,10 +1,12 @@
 from constants import *
 import pygame
 from pygame.locals import *
+from player import Player
 
 
 
 def gameLoop(screen, clock, dt):
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     while True:
         # Exit the loop if user has closed window
         for event in pygame.event.get():
@@ -12,7 +14,9 @@ def gameLoop(screen, clock, dt):
                 return
 
         screen.fill('black')
+        player.draw(screen)
         dt = clock.tick(60) / 1000
+        player.update(dt)
         #Finally
         pygame.display.flip()
 
